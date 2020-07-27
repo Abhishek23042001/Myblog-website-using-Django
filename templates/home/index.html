@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+    img{
+      height: 300px;
+      width: 300px;
+    }
+    </style>
+</head>
+<body>
+    <h2> Upload Image: </h2>
+    <div class="modal-body">
+        <form action="/uploadimage"  method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Username"  required>
+            </div>
+            <br>
+            <input type="file" name="image">
+            <button type="Submit" style="padding-left: -1px;" class="btn btn-primary">Upload Image</button>
+        </form>    
+    </div>
+    <br>
+    {% for u in users %}
+       <p><b>Name:</b> {{u.name}}
+       <br><br>
+       <img src="{{u.pic.url}}" >
+    {% endfor %}
+</body>
+</html>
